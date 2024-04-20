@@ -1,4 +1,6 @@
 {% import 'macros/math.html' as macro_math -%}
+
+{% import 'macros/social_icon.svg.html' as macro_social -%}
 {% extends "_base.html" %}
 
 {% block page %}homepage{% endblock page%}
@@ -41,8 +43,7 @@
       <div id="right">
         {% for link in config.extra.links %}
         <a href="{{ link.url }}" aria-label="{{ link.name }}" target="_blank" rel='noreferrer noopener'>
-          {% set icon_path = "static/icon/" ~ link.icon ~ ".svg" %}
-          {% set icon = load_data(path=icon_path) %}
+          {% set icon = macro_social::factory(icon=link.icon)  %}
           {{ icon | safe }}
         </a>
         {% endfor %}
